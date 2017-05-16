@@ -110,31 +110,35 @@ Be aware that you need to do a PUT request to store files and a GET with the sam
 
 First create a file using the connector:
 
-	curl -XPUT -H Content-type:text/plain --data-ascii MyTestContent http://localhost:8081/jca-file-client/v1/files/myFileId
+	curl -XPUT -H Content-type:text/plain --data-ascii MyTestContent http://localhost:8080/jca-file-client/v1/files/myFileId
 
 > Note: Don't be sruprised, there will be no output from curl. You can add the -v option to see some output.
 	
 Then retrieve it:
 
-	curl -XGET -H Content-type:text/plain http://localhost:8081/jca-file-client/v1/files/myFileId
+	curl -XGET -H Content-type:text/plain http://localhost:8080/jca-file-client/v1/files/myFileId
 
 You should see `MyTestContent` as a result, proving that you got your file content back.
 
 Next let's delete the file we just created:
 
-	curl -XDELETE -H Content-type:text/plain http://localhost:8081/jca-file-client/v1/files/myFileId
+	curl -XDELETE -H Content-type:text/plain http://localhost:8080/jca-file-client/v1/files/myFileId
 
 And retrieve it again:
 
-	curl -v -XGET -H Content-type:text/plain http://localhost:8081/jca-file-client/v1/files/myFileId
+	curl -v -XGET -H Content-type:text/plain http://localhost:8080/jca-file-client/v1/files/myFileId
 
+The output should be empty.
+
+LEGACY
+------
 This time the output should look like this:
 
-	* About to connect() to localhost port 8081 (#0)
+	* About to connect() to localhost port 8080 (#0)
 	*   Trying 127.0.0.1... connected
 	> GET /jca-file-client/v1/files/myFileId HTTP/1.1
 	> User-Agent: curl/7.22.0 (amd64-pc-win32) libcurl/7.22.0 OpenSSL/0.9.8r zlib/1.2.5
-	> Host: localhost:8081
+	> Host: localhost:8080
 	> Accept: */*
 	> Content-type:text/plain
 	>
